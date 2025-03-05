@@ -1,7 +1,9 @@
 "use client";
 
 import { Pencil1Icon } from "@radix-ui/react-icons";
-import { Button, TextArea, TextField } from "@radix-ui/themes";
+import { Button, TextField } from "@radix-ui/themes";
+import "easymde/dist/easymde.min.css";
+import SimpleMDE from "react-simplemde-editor";
 
 /**
  * @description NewIssuePage is a client-side page that displays a form for creating a new issue.
@@ -20,8 +22,13 @@ const NewIssuePage = () => {
         </TextField.Slot>
       </TextField.Root>
 
-      {/* TextArea for the issue description */}
-      <TextArea placeholder="Description" />
+      {/* SimpleMDE editor for the issue description */}
+      <SimpleMDE
+        options={{
+          status: false, // Removes line/word count section
+        }}
+        placeholder="Description"
+      />
 
       {/* Submit button for creating the new issue */}
       <Button>Submit New Issue</Button>
