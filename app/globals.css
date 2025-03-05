@@ -25,3 +25,20 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Styles for active and inactive navigation links */
+.active {
+  color: #0ea5e9;
+  &:hover {
+    color: #0369a1;
+  }
+  /* Underline the active link */
+  border-bottom: 1px solid #0ea5e9;
+}
+
+.inactive {
+  color: #71717a;
+  &:hover {
+    color: #3f3f46;
+  }
+}

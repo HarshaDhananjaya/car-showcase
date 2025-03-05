@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FcWorkflow } from "react-icons/fc";
 
 const NavBar = () => {
+  const currentPath = usePathname();
+
   const links = [
     {
       label: "Dashboard",
@@ -22,7 +27,7 @@ const NavBar = () => {
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              className="text-zinc-500 hover:text-zinc-800"
+              className={link.href === currentPath ? "active" : "inactive"}
               href={link.href}
             >
               {link.label}
