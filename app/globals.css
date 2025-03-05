@@ -28,12 +28,12 @@ body {
 
 /* Styles for active and inactive navigation links */
 .active {
-  color: #0ea5e9;
+  color: #6e56cf;
   &:hover {
-    color: #0369a1;
+    color: #6041da;
   }
   /* Underline the active link */
-  border-bottom: 1px solid #0ea5e9;
+  border-bottom: 1px solid #6e56cf;
 }
 
 .inactive {
