@@ -2,6 +2,7 @@
 
 import { createIssueSchema } from "@/app/validationSchemas";
 import ErrorMessage from "@/components/ErrorMessage";
+import FullPageLoader from "@/components/FullPageLoader";
 import { showErrorToast, showSuccessToast } from "@/services/toast-service"; // Import toast utils
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil1Icon } from "@radix-ui/react-icons";
@@ -45,7 +46,7 @@ const NewIssuePage = () => {
       await axios.post("/api/issues", data);
       router.push("/issues");
       showSuccessToast("Issue created successfully!");
-    } catch (error) {
+    } catch {
       showErrorToast(
         "There was an error submitting the issue. Please try again."
       );
@@ -56,6 +57,9 @@ const NewIssuePage = () => {
 
   return (
     <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+      {/* Loading indicator */}
+      <FullPageLoader status={isLoading} />
+
       {/* TextField for the issue title with a Pencil icon */}
       <TextField.Root radius="large" placeholder="Title" {...register("title")}>
         <TextField.Slot>
