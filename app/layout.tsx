@@ -1,3 +1,4 @@
+import ToastWrapper from "@/components/ToastWrapper"; // Import client-side component
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
@@ -42,6 +43,8 @@ export default function RootLayout({
           {/* The main content area of the application. */}
           <main className="max-w-7xl mx-auto">{children}</main>
         </Theme>
+        {/* Include ToastWrapper for toasts */}
+        <ToastWrapper />
       </body>
     </html>
   );
