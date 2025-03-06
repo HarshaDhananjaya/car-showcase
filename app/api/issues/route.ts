@@ -1,12 +1,6 @@
+import { createIssueSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-
-// Define the create Issue schema for validating the request body
-const createIssueSchema = z.object({
-  title: z.string().min(1).max(150), // Title must be between 1 and 150 characters
-  description: z.string().min(1), // Description must be at least 1 character
-});
 
 /**
  * @description Create a new issue

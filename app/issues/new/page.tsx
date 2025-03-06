@@ -1,6 +1,9 @@
 "use client";
 
+import { createIssueSchema } from "@/app/validationSchemas";
+import ErrorMessage from "@/components/ErrorMessage";
 import { showErrorToast, showSuccessToast } from "@/services/toast-service"; // Import toast utils
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { Button, TextArea, TextField } from "@radix-ui/themes";
 import axios from "axios";
@@ -9,11 +12,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
+import { z } from "zod";
 
-interface IssueForm {
-  title: string;
-  description: string;
-}
+// Define the IssueForm type
+type IssueForm = z.infer<typeof createIssueSchema>;
 
 /**
  * @description NewIssuePage is a client-side page that displays a form for creating a new issue.
@@ -25,7 +27,13 @@ interface IssueForm {
 const NewIssuePage = () => {
   const router = useRouter();
   // React Hook Form
-  const { register, handleSubmit } = useForm<IssueForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors: error },
+  } = useForm<IssueForm>({
+    resolver: zodResolver(createIssueSchema),
+  });
   // Loading and error states
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,8 +63,14 @@ const NewIssuePage = () => {
         </TextField.Slot>
       </TextField.Root>
 
+      {/* Error message for the issue title */}
+      <ErrorMessage>{error.title?.message}</ErrorMessage>
+
       {/* TextArea for the issue description */}
       <TextArea placeholder="Description" {...register("description")} />
+
+      {/* Error message for the issue description */}
+      <ErrorMessage>{error.description?.message}</ErrorMessage>
 
       {/* Submit button for creating the new issue */}
       <Button
