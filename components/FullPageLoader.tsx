@@ -30,9 +30,9 @@ const FullPageLoader = ({
 
   // Render the loading spinner
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-black z-50">
       <motion.div
-        className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+        className="w-16 h-16 border-4 border-violet-500 border-t-transparent rounded-full animate-spin"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
